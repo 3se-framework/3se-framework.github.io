@@ -87,7 +87,7 @@ This implies:
 - Responsibility for consequences
 - Professional competence
 
-### Evidence-based compliane over checklist-driven compliance
+### Evidence-based compliance over checklist-driven compliance
 Checklist-driven compliance leads to:
 - Cargo-cult safety cases
 - Security theater
