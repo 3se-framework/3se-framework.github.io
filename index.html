@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3SE — System, Safety & Security Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0d1b2a;
+      --ink-mid: #2e4057;
+      --ink-light: #6b7f96;
+      --paper: #f4f7fb;
+      --paper-warm: #e8f0f9;
+      --accent: #1a5faa;
+      --accent-light: #c8ddf2;
+      --rule: #c5d5e8;
+      --white: #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--paper);
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(244, 247, 251, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+      animation: fadeDown 0.6s ease both;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--ink-mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 8rem 4rem 8rem 4rem;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent);
+    }
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 6vw, 6rem);
+      font-weight: 900;
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+      margin-bottom: 1.2rem;
+    }
+    .hero-title .accent { color: var(--accent); }
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--ink-mid);
+      margin-bottom: 2rem;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-mid);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 3rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: var(--accent);
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: #134d8c; transform: translateY(-2px); }
+    .btn-secondary {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: background 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-secondary:hover { background: var(--ink); color: var(--white); transform: translateY(-2px); }
+
+    .hero-right {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      animation: fadeIn 1s 0.4s ease both;
+    }
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 70% 30%, #0d2d52 0%, var(--ink) 70%);
+    }
+    .tetrahedron-visual {
+      position: relative;
+      z-index: 1;
+      width: 460px;
+      height: 460px;
+    }
+    .tetrahedron-visual svg {
+      width: 100%;
+      height: 100%;
+    }
+    .hero-stat-bar {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      gap: 3rem;
+    }
+    .hero-stat { text-align: center; }
+    .hero-stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--white);
+      display: block;
+    }
+    .hero-stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+    }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 7rem 4rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 1.5rem;
+      height: 1px;
+      background: var(--accent);
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .section-lead {
+      font-size: 1.1rem;
+      color: var(--ink-mid);
+      max-width: 680px;
+      line-height: 1.8;
+    }
+    hr.rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ── PROBLEM ── */
+    .problems { background: var(--white); }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+      margin-top: 4rem;
+      border: 1px solid var(--rule);
+    }
+    .problem-card {
+      padding: 2.5rem;
+      border-right: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      transition: background 0.2s;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+    }
+    .problem-card.visible { opacity: 1; transform: translateY(0); }
+    .problem-card:hover { background: var(--paper); }
+    .problem-card:nth-child(2n) { border-right: none; }
+    .problem-card:nth-child(3), .problem-card:nth-child(4) { border-bottom: none; }
+    .problem-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--accent-light);
+      line-height: 1;
+      margin-bottom: 0.8rem;
+    }
+    .problem-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+    }
+    .problem-desc {
+      font-size: 0.92rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+
+    /* ── TETRAHEDRON ── */
+    .tetra-section { background: var(--paper-warm); }
+    .tetra-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+      margin-top: 4rem;
+    }
+    .tetra-domains {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .domain-card {
+      padding: 1.8rem;
+      background: var(--white);
+      border-left: 3px solid var(--accent);
+      opacity: 0;
+      transform: translateX(-20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .domain-card.visible { opacity: 1; transform: translateX(0); }
+    .domain-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+    }
+    .domain-desc {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+    }
+    .tetra-text .section-lead { margin-bottom: 2rem; }
+    .tradeoff-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--ink-mid);
+      padding: 1rem 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--rule);
+    }
+    .tradeoff-note strong { color: var(--accent); font-family: 'Playfair Display', serif; font-size: 1.4rem; }
+
+    /* ── CONTENTS ── */
+    .contents { background: var(--white); }
+    .contents-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+      margin-top: 4rem;
+    }
+    .content-card {
+      padding: 2.5rem 2rem;
+      border-top: 2px solid var(--rule);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .content-card.visible { opacity: 1; transform: translateY(0); }
+    .content-card:hover .content-icon { color: var(--accent); }
+    .content-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      transition: color 0.2s;
+    }
+    .content-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.7rem;
+    }
+    .content-desc {
+      font-size: 0.9rem;
+      color: var(--ink-light);
+      line-height: 1.7;
+    }
+    .content-link {
+      display: inline-block;
+      margin-top: 1.2rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s;
+    }
+    .content-link:hover { opacity: 0.7; }
+
+    /* ── AGILE ── */
+    .agile-section { background: var(--ink); color: var(--white); }
+    .agile-section .section-title { color: var(--white); }
+    .agile-section .section-lead { color: rgba(255,255,255,0.6); }
+    .agile-section .section-label { color: #7ab8e8; }
+    .agile-section .section-label::before { background: #7ab8e8; }
+    .agile-values {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,0.08);
+      margin-top: 4rem;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .agile-value {
+      padding: 2.5rem;
+      background: var(--ink);
+      transition: background 0.2s;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.5s ease, transform 0.5s ease, background 0.2s;
+    }
+    .agile-value.visible { opacity: 1; transform: translateY(0); }
+    .agile-value:hover { background: #111f30; }
+    .agile-over {
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 0.5rem;
+    }
+    .agile-primary {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .agile-secondary {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.35);
+      font-style: italic;
+    }
+
+    /* ── AUDIENCE ── */
+    .audience { background: var(--paper); }
+    .audience-list {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 4rem;
+      flex-wrap: wrap;
+    }
+    .audience-chip {
+      padding: 0.9rem 1.8rem;
+      background: var(--white);
+      border: 1px solid var(--rule);
+      font-size: 0.9rem;
+      color: var(--ink-mid);
+      font-weight: 400;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .audience-chip:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: var(--paper-warm);
+      text-align: center;
+      padding: 8rem 4rem;
+    }
+    .cta-section .section-title { margin: 1rem 0 1.5rem; }
+    .cta-section .section-lead { margin: 0 auto 3rem; }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ink);
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+      padding: 2.5rem 4rem;
+      font-size: 0.82rem;
+      letter-spacing: 0.04em;
+    }
+    footer a { color: rgba(255,255,255,0.5); text-decoration: none; }
+    footer a:hover { color: var(--white); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 300px; }
+      .hero-left { padding: 6rem 2rem 3rem; }
+      section { padding: 5rem 2rem; }
+      .problems-grid { grid-template-columns: 1fr; }
+      .problem-card { border-right: none !important; }
+      .problem-card:last-child { border-bottom: none; }
+      .tetra-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .contents-grid { grid-template-columns: 1fr; }
+      .agile-values { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">3<span>SE</span></a>
+  <ul class="nav-links">
+    <li><a href="#why">Why 3SE</a></li>
+    <li><a href="#tetrahedron">Tetrahedron</a></li>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#agile">Agile</a></li>
+    <li><a href="#cta">Get started</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow">System · Safety · Security Engineering</div>
+    <h1 class="hero-title">Engineer<br>complexity<br>with <span class="accent">one voice.</span></h1>
+    <p class="hero-tagline">One voice, no noise.</p>
+    <p class="hero-desc">
+      A modern, agile-inspired framework that unifies disciplines and empowers engineers — for socio-cyber-physical systems of any scale.
+    </p>
+    <div class="hero-cta">
+      <a href="#why" class="btn-primary">Discover 3SE</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <!-- Tetrahedron SVG -->
+    <div class="tetrahedron-visual">
+      <svg viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!--
+          Tetrahedron layout:
+            Apex:         Engineering  (170, 30)
+            Base-left:    Business     (50, 270)
+            Base-right:   Project      (290, 270)
+            Base-center:  Asset        (170, 220)  — front-center of base triangle
+        -->
+        <!-- Outer faces / edges -->
+        <g stroke="rgba(255,255,255,0.15)" stroke-width="1">
+          <!-- Apex to base corners -->
+          <line x1="170" y1="30" x2="50"  y2="270"/>
+          <line x1="170" y1="30" x2="290" y2="270"/>
+          <line x1="170" y1="30" x2="170" y2="220"/>
+          <!-- Base triangle edges -->
+          <line x1="50"  y1="270" x2="290" y2="270"/>
+          <line x1="50"  y1="270" x2="170" y2="220"/>
+          <line x1="290" y1="270" x2="170" y2="220"/>
+          <!-- Inner centre point to vertices (depth cue) -->
+          <line x1="170" y1="148" x2="50"  y2="270" stroke-dasharray="4 3"/>
+          <line x1="170" y1="148" x2="290" y2="270" stroke-dasharray="4 3"/>
+          <line x1="170" y1="148" x2="170" y2="220" stroke-dasharray="4 3"/>
+        </g>
+        <!-- Accent lines -->
+        <g stroke="#5b9bd5" stroke-width="1.5" opacity="0.85">
+          <line x1="170" y1="30" x2="170" y2="148"/>
+        </g>
+        <!-- Domain nodes -->
+        <circle cx="170" cy="30"  r="7" fill="#5b9bd5"/>
+        <circle cx="50"  cy="270" r="5" fill="rgba(255,255,255,0.65)"/>
+        <circle cx="290" cy="270" r="5" fill="rgba(255,255,255,0.65)"/>
+        <circle cx="170" cy="220" r="5" fill="rgba(255,255,255,0.65)"/>
+        <!-- Apex label: Engineering -->
+        <text x="170" y="17" text-anchor="middle" fill="#5b9bd5" font-family="'Playfair Display', serif" font-size="16" font-weight="700">Engineering</text>
+        <!-- Base corner labels -->
+        <text x="50"  y="288" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="'DM Sans', sans-serif" font-size="13">Business</text>
+        <text x="290" y="288" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="'DM Sans', sans-serif" font-size="13">Project</text>
+        <!-- Asset: centre-front of base -->
+        <text x="170" y="238" text-anchor="middle" fill="rgba(255,255,255,0.6)" font-family="'DM Sans', sans-serif" font-size="13">Asset</text>
+        <!-- Feasible Design Space label — inside the tetrahedron, in white -->
+        <text x="170" y="152" text-anchor="middle" fill="rgba(255,255,255,0.82)" font-family="'Playfair Display', serif" font-style="italic" font-size="11" letter-spacing="1">feasible</text>
+        <text x="170" y="166" text-anchor="middle" fill="rgba(255,255,255,0.82)" font-family="'Playfair Display', serif" font-style="italic" font-size="11" letter-spacing="1">design space</text>
+      </svg>
+    </div>
+    <div class="hero-stat-bar">
+      <div class="hero-stat">
+        <span class="hero-stat-num">3</span>
+        <span class="hero-stat-label">Disciplines</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">4</span>
+        <span class="hero-stat-label">Domains</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">6</span>
+        <span class="hero-stat-label">Trade-offs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- WHY 3SE -->
+<section class="problems" id="why">
+  <div class="section-inner">
+    <div class="section-label">The Problem</div>
+    <h2 class="section-title">Engineering is broken<br>at the seams.</h2>
+    <p class="section-lead">
+      Modern systems fail not because of a lack of expertise — but because
+      that expertise is fragmented. 3SE was built to fix the four systemic fractures
+      that slow teams down and let risks through.
+    </p>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <div class="problem-title">Siloed disciplines</div>
+        <p class="problem-desc">Systems, safety, and security engineers work in parallel worlds — different teams, different vocabularies, different tools. Critical dependencies are missed. Integration happens too late, if at all.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <div class="problem-title">Fragmented standards, no shared semantics</div>
+        <p class="problem-desc">ISO 15288, IEC 61508, IEC 62443, DO-178C… each standard speaks its own language. Without semantic alignment, compliance becomes a translation exercise rather than a quality driver.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <div class="problem-title">Misalignment across management layers</div>
+        <p class="problem-desc">Business, project, engineering, and quality management each pull in different directions. Decisions are made in isolation, and trade-offs remain invisible until they become failures.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">04</div>
+        <div class="problem-title">Engineers constrained, not empowered</div>
+        <p class="problem-desc">Traditional frameworks prescribe how to work rather than what to achieve. Engineers are micromanaged instead of trusted. 3SE returns responsibility and flexibility to the people closest to the problem.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- TETRAHEDRON -->
+<section class="tetra-section" id="tetrahedron">
+  <div class="section-inner">
+    <div class="tetra-layout">
+      <div class="tetra-text">
+        <div class="section-label">The Model</div>
+        <h2 class="section-title">The 3SE Tetrahedron</h2>
+        <p class="section-lead">
+          At the heart of 3SE lies a conceptual model that structures the engineering problem space into four interconnected domains — and maps the tensions between them.
+        </p>
+        <p class="section-lead" style="margin-top: 1rem;">
+          These domains are linked by <strong>six trade-offs</strong>, all converging toward a single <strong>feasible design space</strong>: the solution that is technically sound, safe, and secure.
+        </p>
+        <br>
+        <div class="tradeoff-note">
+          <strong>4</strong>
+          <span>domains · </span>
+          <strong>6</strong>
+          <span>trade-offs · </span>
+		  <strong>1</strong> 
+		  <span>feasible design space</span>
+        </div>
+      </div>
+      <div class="tetra-domains">
+        <div class="domain-card">
+          <div class="domain-name">Business</div>
+          <p class="domain-desc">Stakeholder needs, strategic objectives, and value delivery</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-name">Engineering</div>
+          <p class="domain-desc">Technical solutions, system architecture, and design decisions</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-name">Asset</div>
+          <p class="domain-desc">Physical and digital assets, their properties and lifecycle</p>
+        </div>
+        <div class="domain-card">
+          <div class="domain-name">Project</div>
+          <p class="domain-desc">Schedule, resources, constraints, and delivery</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CONTENTS -->
+<section class="contents" id="contents">
+  <div class="section-inner">
+    <div class="section-label">What's Inside</div>
+    <h2 class="section-title">A complete engineering<br>framework.</h2>
+    <p class="section-lead">
+      3SE is not just a methodology — it is a framework. From formal ontology to hands-on tooling, everything is designed to work together.
+    </p>
+    <div class="contents-grid">
+      <!-- Card 1: Ontology — single node -->
+      <div class="content-card">
+        <div class="content-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="6" stroke="currentColor" stroke-width="1.8" fill="none"/>
+            <circle cx="16" cy="16" r="2" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="content-title">Ontology</div>
+        <p class="content-desc">A formal, shared vocabulary that aligns concepts across systems, safety, and security engineering. One language for all disciplines — no translation, no ambiguity.</p>
+      </div>
+      <!-- Card 2: Process Descriptions — two nodes linked -->
+      <div class="content-card">
+        <div class="content-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="7"  cy="16" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/>
+            <circle cx="7"  cy="16" r="1.5" fill="currentColor"/>
+            <line x1="11" y1="16" x2="21" y2="16" stroke="currentColor" stroke-width="1.8"/>
+            <circle cx="25" cy="16" r="4" stroke="currentColor" stroke-width="1.8" fill="none"/>
+            <circle cx="25" cy="16" r="1.5" fill="currentColor"/>
+          </svg>
+        </div>
+        <div class="content-title">Process Descriptions</div>
+        <p class="content-desc">Clearly defined engineering and support processes, each with associated roles, workflows, and templates — lean, adaptable, and built for agile contexts.</p>
+      </div>
+      <!-- Card 3: Engineering Language — three nodes forming a triangle -->
+      <div class="content-card">
+        <div class="content-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="5"  r="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="16" cy="5"  r="1.2" fill="currentColor"/>
+            <circle cx="5"  cy="25" r="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="5"  cy="25" r="1.2" fill="currentColor"/>
+            <circle cx="27" cy="25" r="3" stroke="currentColor" stroke-width="1.6" fill="none"/>
+            <circle cx="27" cy="25" r="1.2" fill="currentColor"/>
+            <line x1="16" y1="8"  x2="6"  y2="22" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="16" y1="8"  x2="26" y2="22" stroke="currentColor" stroke-width="1.6"/>
+            <line x1="8"  y1="25" x2="24" y2="25" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <div class="content-title">Engineering Language</div>
+        <p class="content-desc">A structured language for expressing engineering artefacts consistently — from requirements to hazard analyses, from threat models to architecture decisions.</p>
+      </div>
+      <!-- Card 4: JARVIS4SE — fully connected diamond mesh -->
+      <div class="content-card">
+        <div class="content-icon" style="color: var(--ink);">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="3"  r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="16" cy="3"  r="1"   fill="currentColor"/>
+            <circle cx="3"  cy="16" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="3"  cy="16" r="1"   fill="currentColor"/>
+            <circle cx="29" cy="16" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="29" cy="16" r="1"   fill="currentColor"/>
+            <circle cx="16" cy="29" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="16" cy="29" r="1"   fill="currentColor"/>
+            <circle cx="16" cy="16" r="2.5" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <circle cx="16" cy="16" r="1"   fill="currentColor"/>
+            <!-- All edges: center to corners + outer ring -->
+            <line x1="16" y1="5.5"  x2="16" y2="13.5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="5.5"  y1="16" x2="13.5" y2="16" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="18.5" y1="16" x2="26.5" y2="16" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="16" y1="18.5" x2="16" y2="26.5" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="17.8" y1="4.8"  x2="27.2" y2="14.2" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="14.2" y1="4.8"  x2="4.8"  y2="14.2" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="4.8"  y1="17.8" x2="14.2" y2="27.2" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="27.2" y1="17.8" x2="17.8" y2="27.2" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="3"    y1="16"   x2="29"   y2="16"   stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+            <line x1="16"   y1="3"    x2="16"   y2="29"   stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2"/>
+          </svg>
+        </div>
+        <div class="content-title">Engineering Tool</div>
+        <p class="content-desc">3SE's engineering language comes to life in JARVIS4SE — an open engineering tool that operationalises the full framework. Explore the documentation, start modelling, and put 3SE into practice immediately.</p>
+        <a href="https://regis-casteran.gitbook.io/jarvis4se/" target="_blank" class="content-link">Open JARVIS4SE Documentation ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- AGILE -->
+<section class="agile-section" id="agile">
+  <div class="section-inner">
+    <div class="section-label">The Philosophy</div>
+    <h2 class="section-title">Agile at its core.</h2>
+    <p class="section-lead">
+      3SE is grounded in the values of the Agile Manifesto — adapted for the realities of safety- and security-critical system engineering. Rigour and agility are not opposites.
+    </p>
+    <div class="agile-values">
+      <div class="agile-value">
+        <div class="agile-over">We value</div>
+        <div class="agile-primary">Accountable engineering</div>
+        <div class="agile-secondary">over prescriptive micromanagement</div>
+      </div>
+      <div class="agile-value">
+        <div class="agile-over">We value</div>
+        <div class="agile-primary">Evidence-based compliance</div>
+        <div class="agile-secondary">over checklist-driven compliance</div>
+      </div>
+      <div class="agile-value">
+        <div class="agile-over">We value</div>
+        <div class="agile-primary">Continuous stakeholder alignment</div>
+        <div class="agile-secondary">over transactional negotiation</div>
+      </div>
+      <div class="agile-value">
+        <div class="agile-over">We value</div>
+        <div class="agile-primary">Holistic risk management</div>
+        <div class="agile-secondary">over risk opacity</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <div class="section-inner">
+    <div class="section-label" style="justify-content: center;">Get Started</div>
+    <h2 class="section-title">Ready to engineer<br>with one voice?</h2>
+    <p class="section-lead">
+      3SE is open and community-driven. Explore the framework, the language, and the tooling — and join the movement toward risk-centric integrative engineering.
+    </p>
+    <div class="cta-btns">
+      <a href="https://regis-casteran.gitbook.io/jarvis4se/" target="_blank" class="btn-primary">Explore JARVIS4SE ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2022 3SE — System, Safety & Security Engineering &nbsp;·&nbsp; <a href="https://www.3se.info/">www.3se.info</a></p>
+</footer>
+
+<script>
+  // Scroll-triggered reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.problem-card, .domain-card, .content-card, .agile-value').forEach((el, i) => {
+    el.dataset.delay = (i % 4) * 100;
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>
