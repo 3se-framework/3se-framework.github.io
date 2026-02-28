@@ -1,6 +1,6 @@
 ## *One voice, no noise.*
 
-> A modern, agile-inspired engineering framework for socio-cyber-physical systems — bridging disciplines, aligning stakeholders, and empowering engineers.
+> A modern, agile-inspired engineering framework for socio-cyber-physical systems — bridging disciplines and empowering engineers.
 
 ## What is 3SE?
 
