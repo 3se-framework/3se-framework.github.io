@@ -77,4 +77,4 @@ Explore it here: [regis-casteran.gitbook.io/jarvis4se](https://regis-casteran.gi
 ---
 Copyright (c) 2022 Regis Casteran
 
-![CC_BY-NC-ND](https://github.com/3se-framework/3se-framework.github.io/blob/main/CC_BY-NC-ND.png)
+![CC_BY-NC-ND](https://www.3se.info/CC_BY-NC-ND.png)
