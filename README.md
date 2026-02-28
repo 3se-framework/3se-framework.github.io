@@ -73,3 +73,8 @@ A structured language for expressing engineering artefacts consistently — from
 ### JARVIS4SE — The Engineering Tool
 3SE's language is brought to life in **JARVIS4SE**, an open engineering tool that operationalises the framework.
 Explore it here: [regis-casteran.gitbook.io/jarvis4se](https://regis-casteran.gitbook.io/jarvis4se/)
+
+---
+Copyright (c) 2022 Regis Casteran
+
+![CC_BY-NC-ND](https://github.com/3se-framework/3se-framework.github.io/blob/main/CC_BY-NC-ND.png)
