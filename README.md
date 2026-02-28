@@ -43,7 +43,7 @@ At the heart of 3SE lies the **3SE Tetrahedron** — a conceptual model that str
 
 | Domain | Description |
 |--------|-------------|
-| **Business** | Business Management defines what is worth building from a commercial perspective, balancing investment against expected return across the full lifecycle. |
+| **Business** | Business Management defines what is worth engineering from a commercial perspective, balancing investment against expected return across the full lifecycle. |
 | **Engineering** | Engineering Management is the translation layer between commercial intent and physical reality. It owns technical feasibility and capability.  |
 | **Asset** | Asset Management takes care about physical and digital assets, their properties and lifecycle. It owns the organizational infrastructure that ensures consistent, repeatable, and compliant output. |
 | **Project** | Project Management orchestrates the sequence of work, manages dependencies, and ensures that the deliverables reach the stakeholders within the agreed timeframe. |
@@ -70,9 +70,51 @@ Designed to be lean, adaptable, and actionable in agile contexts.
 ### An Engineering Language
 A structured language for expressing engineering artefacts consistently — from requirements to hazard analyses, from threat models to architecture decisions.
 
-### JARVIS4SE — The Engineering Tool
+### An Engineering Tool
 3SE's language is brought to life in **JARVIS4SE**, an open engineering tool that operationalises the framework.
 Explore it here: [regis-casteran.gitbook.io/jarvis4se](https://regis-casteran.gitbook.io/jarvis4se/)
+
+## Agility at its core
+
+3SE is grounded in the values of the Agile Manifesto — adapted for the realities of safety- and security-critical system engineering.
+Rigour and agility are not opposites.
+
+### Accountable engineering over prescriptive micromanagement
+3SE positions against process replacing engineering judgement.
+This implies:
+- Ownership of decisions
+- Traceability of rationale
+- Responsibility for consequences
+- Professional competence
+
+### Evidence-based compliane over checklist-driven compliance
+Checklist-driven compliance leads to:
+- Cargo-cult safety cases
+- Security theater
+- Formal but hollow certification artifacts
+
+3SE promotes evidence-based compliance which demands:
+- Demonstrable hazard mitigation
+- Threat validation
+- Traceable requirement verification
+- Test evidence
+- Argumentation
+
+### Continuous stakeholder alignement over transactional negotiation
+Negotiation is episodic, alignement is continuous.
+This allows to:
+- Reduce emergent systemic risk
+- Minimize organizational drift
+- Improve shared risk perception
+
+### Holistic risk management over risk opacity
+Risk opacity implies:
+- Siloed analysis
+- Hidden assumptions
+- Undocumented risk acceptance
+- Fragmented assurance
+
+3SE considers risk as being the integrating variable between system engineering, safety engineering, and security engineering. 
 
 ---
 Copyright (c) 2022 Regis Casteran
