@@ -58,7 +58,7 @@ The tetrahedron is not a process. It is a thinking tool — a map for reasoning 
 It provides:
 
 ### An Ontology
-A formal, shared vocabulary that aligns concepts across systems, safety, and security engineering. 
+A formal, shared vocabulary that aligns concepts across system, safety, and security engineering. 
 No more translation. 
 No more ambiguity. 
 One language for all disciplines.
