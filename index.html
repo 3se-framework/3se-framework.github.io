@@ -458,6 +458,7 @@
       text-align: center;
       padding: 8rem 4rem;
     }
+    .cta-section .section-label { justify-content: center; }
     .cta-section .section-title { margin: 1rem 0 1.5rem; }
     .cta-section .section-lead { margin: 0 auto 3rem; }
     .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
@@ -788,6 +789,23 @@
         <p class="content-desc">3SE's engineering language comes to life in JARVIS4SE — an open engineering tool that operationalises the full framework. Explore the documentation, start modelling, and put 3SE into practice immediately.</p>
         <a href="https://regis-casteran.gitbook.io/jarvis4se/" target="_blank" class="content-link">Open JARVIS4SE Documentation ↗</a>
       </div>
+      <!-- Card 5: Maturity Model — staircase of 6 steps -->
+      <div class="content-card">
+        <div class="content-icon">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1"  y="27" width="4" height="4" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="6"  y="22" width="4" height="9" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="11" y="17" width="4" height="14" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="16" y="12" width="4" height="19" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="21" y="7"  width="4" height="24" stroke="currentColor" stroke-width="1.5" fill="none"/>
+            <rect x="26" y="2"  width="5" height="29" stroke="currentColor" stroke-width="1.5" fill="currentColor" fill-opacity="0.15"/>
+            <line x1="3" y1="26" x2="29" y2="3" stroke="currentColor" stroke-width="1.2" stroke-dasharray="2 2" opacity="0.4"/>
+          </svg>
+        </div>
+        <div class="content-title">Maturity Model</div>
+        <p class="content-desc">A six-stage roadmap — from ad hoc to knowledge-driven engineering — mapping the business gains at each level and the cost of staying behind. Built on the 3SE framework to help organizations assess where they are and plan where to go.</p>
+        <a href="maturity-model.html" class="content-link">Explore the Maturity Model ↗</a>
+      </div>
     </div>
   </div>
 </section>
@@ -851,7 +869,7 @@
 <script>
   // Scroll-triggered reveal
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
         setTimeout(() => entry.target.classList.add('visible'), entry.target.dataset.delay || 0);
         observer.unobserve(entry.target);
