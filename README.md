@@ -30,12 +30,13 @@ ISO 15288, IEC 61508, IEC 62443, DO-178C… each standard speaks its own languag
 Without semantic alignment, compliance becomes a translation exercise rather than a quality driver.
 
 ### Misalignment across management layers
-Business management, project management, engineering management, and quality management each pull in different directions. 
-Without a shared model, decisions are made in isolation and trade-offs are invisible.
+Business management, project management, engineering management, and asset management each pull in different directions. 
+Decisions are made in isolation, and trade-offs remain invisible until they become failures.
 
 ### Engineers micromanaged instead of empowered
 Traditional frameworks prescribe how to work rather than what to achieve.
-3SE puts responsibility and flexibility back in the hands of engineers, trusting them to navigate complexity with the right tools and principles.
+Engineers are micromanaged instead of trusted. 
+3SE returns responsibility and flexibility to the people closest to the problem.
 
 ## The 3SE Tetrahedron
 
@@ -59,13 +60,13 @@ It provides:
 
 ### An Ontology
 A formal, shared vocabulary that aligns concepts across system, safety, and security engineering. 
+One language for all disciplines.
 No more translation. 
 No more ambiguity. 
-One language for all disciplines.
 
 ### Process Descriptions
 Clearly defined engineering and support processes, each with associated roles, workflows, and templates. 
-Designed to be lean, adaptable, and actionable in agile contexts.
+Designed to be lean, adaptable, and built for agile contexts.
 
 ### An Engineering Language
 A structured language for expressing engineering artefacts consistently — from requirements to hazard analyses, from threat models to architecture decisions.
@@ -73,6 +74,10 @@ A structured language for expressing engineering artefacts consistently — from
 ### An Engineering Tool
 3SE's language is brought to life in **JARVIS4SE**, an open engineering tool that operationalises the framework.
 Explore it here: [regis-casteran.gitbook.io/jarvis4se](https://regis-casteran.gitbook.io/jarvis4se/)
+
+### A Maturity Model
+A six-stage roadmap — from ad hoc to knowledge-based engineering — mapping the business gains at each level and the cost of staying behind. 
+Built on the 3SE to help organizations assess where they are and plan where to go.
 
 ## Agility at its core
 
