@@ -122,6 +122,7 @@ Risk opacity implies:
 3SE considers risk as being the integrating variable between system engineering, safety engineering, and security engineering. 
 
 ---
-Copyright (c) 2022 Regis Casteran
+
+Copyright (c) 2022 3SE — System, Safety & Security Engineering
 
 ![CC_BY-NC-ND](https://www.3se.info/CC_BY-NC-ND.png)
