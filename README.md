@@ -68,6 +68,10 @@ No more ambiguity.
 Clearly defined engineering and support processes, each with associated roles, workflows, and templates. 
 Designed to be lean, adaptable, and built for agile contexts.
 
+### An Engineering Method
+A maieutic method — engineering through questions, not answers. 
+Eight roles sit across the tetrahedron's six trade-offs, each drawing out engineering elements through disciplined Socratic dialogue rather than assuming them.
+
 ### An Engineering Language
 A structured language for expressing engineering artefacts consistently — from requirements to hazard analyses, from threat models to architecture decisions.
 
